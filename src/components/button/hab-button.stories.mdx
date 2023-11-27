@@ -1,0 +1,20 @@
+import { Meta, Story, Canvas } from '@storybook/blocks';
+
+<Meta
+  title='Habeetat/Button'
+  component='hab-button'
+  argTypes={{
+    color: { control: 'select', options: ['primary', 'secondary'], defaultValue: 'primary' },
+    type: { control: 'select', options: ['filled', 'bordered', 'text'], defaultValue: 'filled' },
+    size: { control: 'select', options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'], defaultValue: 'md' },
+    class: { control: 'text', defaultValue: 'peppe' }
+  }}
+/>
+
+## Usage
+<Canvas>
+  <Story name='Base'>
+    {(args) => `<hab-button color='${args.color}' size='${args.size}' type='${args.type}' class='${args.class}'>Peppe</hab-button>`}
+  </Story>
+</Canvas>
+

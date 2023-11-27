@@ -6,6 +6,12 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface HabButton {
+        "class": string;
+        "color": 'primary'|'secondary';
+        "size": 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
+        "type": 'filled' | 'bordered' | 'text';
+    }
     interface MyComponent {
         /**
           * The first name
@@ -22,6 +28,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLHabButtonElement extends Components.HabButton, HTMLStencilElement {
+    }
+    var HTMLHabButtonElement: {
+        prototype: HTMLHabButtonElement;
+        new (): HTMLHabButtonElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -29,10 +41,17 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "hab-button": HTMLHabButtonElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface HabButton {
+        "class"?: string;
+        "color"?: 'primary'|'secondary';
+        "size"?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
+        "type"?: 'filled' | 'bordered' | 'text';
+    }
     interface MyComponent {
         /**
           * The first name
@@ -48,6 +67,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "hab-button": HabButton;
         "my-component": MyComponent;
     }
 }
@@ -55,6 +75,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "hab-button": LocalJSX.HabButton & JSXBase.HTMLAttributes<HTMLHabButtonElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

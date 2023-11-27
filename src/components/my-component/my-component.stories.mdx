@@ -1,0 +1,18 @@
+import { Meta, Story, Canvas } from '@storybook/blocks';
+
+<Meta
+  title='MyComponent'
+  component='my-component'
+  argTypes={{
+    first: { control: 'text' },
+    middle: { control: 'text' },
+    last: { control: 'text' },
+  }}
+/>
+
+## Usage
+<Canvas>
+  <Story name='Primary' args={{ first: 'John', middle: 'Doe', last: 'McFerry' }}>
+    {(args) => `<my-component first="${args.first}" middle="${args.middle}" last="${args.last}" />`}
+  </Story>
+</Canvas>

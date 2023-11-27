@@ -1,4 +1,20 @@
 import { Config } from '@stencil/core';
+import { sass } from '@stencil/sass';
+import tailwind, { tailwindHMR, setPluginConfigurationDefaults  } from 'stencil-tailwind-plugin';
+// import tailwindcss from 'tailwindcss';
+// import autoprefixer from 'autoprefixer';
+import tailwindConf from './tailwind.config';
+
+setPluginConfigurationDefaults({
+  tailwindConf,
+  tailwindCssPath: './src/styles/tailwind.css',
+  // postcss: {
+  //   plugins: [
+  //     tailwindcss(),
+  //     autoprefixer()
+  //   ]
+  // }
+});
 
 export const config: Config = {
   namespace: 'habeetat-components',
@@ -8,9 +24,6 @@ export const config: Config = {
       esmLoaderPath: '../loader',
     },
     {
-      type: 'dist-custom-elements',
-    },
-    {
       type: 'docs-readme',
     },
     {
@@ -18,7 +31,9 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
   ],
-  testing: {
-    browserHeadless: "new",
-  },
+  plugins: [
+    sass(),
+    tailwind(),
+    tailwindHMR()
+  ],
 };
