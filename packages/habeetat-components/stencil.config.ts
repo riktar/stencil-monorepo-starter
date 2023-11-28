@@ -4,6 +4,8 @@ import tailwind, { tailwindHMR, setPluginConfigurationDefaults  } from 'stencil-
 // import tailwindcss from 'tailwindcss';
 // import autoprefixer from 'autoprefixer';
 import tailwindConf from './tailwind.config';
+import { reactOutputTarget } from '@stencil/react-output-target';
+
 
 setPluginConfigurationDefaults({
   tailwindConf,
@@ -30,6 +32,10 @@ export const config: Config = {
       type: 'www',
       serviceWorker: null, // disable service workers
     },
+    reactOutputTarget({
+      componentCorePackage: 'habeetat-components',
+      proxiesFile: '../habeetat-react/lib/components/stencil-generated/index.ts',
+    }),
   ],
   plugins: [
     sass(),
